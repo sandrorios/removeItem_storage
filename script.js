@@ -14,6 +14,22 @@ function addItem(e) {
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(newItem));
     listItem.appendChild(li);
+    let button = createButton('remove-item text-red');
+    li.appendChild(button);
+}
+
+function createButton(classes){
+    const button = document.createElement('button');
+    button.className = classes;
+    const icon = createIcon('fa-solid fa-xmark');
+    button.appendChild(icon);
+    return button;
+}
+
+function createIcon(classes){
+    const icon = document.createElement('i');
+    icon.className = classes;
+    return icon;
 }
 
 
