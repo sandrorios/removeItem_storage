@@ -16,6 +16,9 @@ function addItem(e) {
     listItem.appendChild(li);
     let button = createButton('remove-item text-red');
     li.appendChild(button);
+
+    inputField.value = '';
+    inputField.focus();
 }
 
 function createButton(classes){
@@ -38,6 +41,13 @@ function removeItem(e){
     }
 }
 
+function clearItems(){
+    while(listItem.firstChild){
+        listItem.firstChild.remove(listItem.firstChild);
+    }
+}
+
 
 formItem.addEventListener('submit', addItem);
 listItem.addEventListener('click', removeItem);
+clearBtn.addEventListener('click', clearItems);
