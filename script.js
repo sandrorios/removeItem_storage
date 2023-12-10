@@ -4,15 +4,22 @@ const listItem = document.getElementById('list-item');
 const clearBtn = document.getElementById('clear');
 const filter = document.getElementById('filter');
 
-function addItem(e) {
+function onAddItemSubmit(e) {
     e.preventDefault();
     let newItem = inputField.value;
     if(newItem === ''){
         alert("Please add an item");
         return;
     }
-    const li = document.createElement('li');
-    li.appendChild(document.createTextNode(newItem));
+   
+    addItemToDOM(newItem)
+    addItemToStorage(newItem);
+    
+}
+
+function addItemToDOM(item) {
+     const li = document.createElement('li');
+    li.appendChild(document.createTextNode(item));
     listItem.appendChild(li);
     let button = createButton('remove-item text-red');
     li.appendChild(button);
@@ -21,6 +28,17 @@ function addItem(e) {
     inputField.focus();
 
     checkUI();
+}
+
+function addItemToStorage(item){
+    let itemsFromStorage;
+    if(localStorage.getItem('items') === null){
+        itemsFromStorage = [];
+    }else{
+        itemsFromStorage = JSON.parse(localStorage.getItem('items'));
+    }
+        itemsFromStorage.push(item);
+        localStorage.setItem('items', JSON.stringify(itemsFromStorage));
 }
 
 function createButton(classes){
@@ -77,7 +95,7 @@ function checkUI(){
     }
 }
 
-formItem.addEventListener('submit', addItem);
+formItem.addEventListener('submit', onAddItemSubmit);
 listItem.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearItems);
 filter.addEventListener('input', filterItems);
