@@ -125,6 +125,6 @@ listItem.addEventListener('click', onClickItem);
 filter.addEventListener('input', filterItems);
 clearBtn.addEventListener('click', clearItems);
 document.addEventListener('DOMContentLoaded', displayItems)
-document.addEventListener('DOMContentLoaded', displayItems);
+
 
 checkUI();
